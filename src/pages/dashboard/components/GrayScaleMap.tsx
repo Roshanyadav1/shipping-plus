@@ -82,7 +82,7 @@ const GrayScaleMap: FC = () => {
   };
   
   return (
-    <div className="h-[45vh] w-full py-4">      
+    <div className="h-[42vh] w-full py-4">      
       {/* Map container with styling */}
       <div 
         id="draggable-map" 

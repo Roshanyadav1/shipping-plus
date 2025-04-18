@@ -1,8 +1,8 @@
 import React from 'react'
-import { Input } from '@/components/ui/input'
+import { Input } from '@/components/ui/input/input'
 import { Bell, Search } from 'lucide-react'
-import { SidebarTrigger } from '@/components/ui/sidebar'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { SidebarTrigger } from '@/components/ui/sidebar/sidebar'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar/avatar'
 
 const AppHeader: React.FC = () => {
    
@@ -12,7 +12,7 @@ const AppHeader: React.FC = () => {
                 <SidebarTrigger className=' cursor-pointer' />
                 <Input
                     type="search"
-                    className='max-w-[320px] border-0'
+                    className='max-w-[320px] border-0 hidden sm:flex'
                     placeholder="Search"
                     icon={<Search size={16} />}
                     iconPosition="start"

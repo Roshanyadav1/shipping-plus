@@ -1,12 +1,16 @@
-import { ArrowUpRightIcon, MapPin, Truck, TruckIcon } from 'lucide-react'
-import { currentShipments, OnTheWayProductData, shipmentDetails } from '../constants'
 import React from 'react'
 import { cn } from '@/lib/utils'
-import BlackAndWhiteMap from './GrayScaleMap'
+import { MapPin, MoveUpRight, Truck, TruckIcon } from 'lucide-react'
+
+import { currentShipments, onTheWayProductData, shipmentDetails } from '../constants'
+import { formatCompact, formatWithCommas } from '@/hooks/useFormate'
+import GrayScaleMap from './GrayScaleMap'
 
 function ShipmentDetails() {
     return (
         <React.Fragment>
+
+            {/* Shipment cards info  */}
             <div className='grid lg:grid-cols-4 md:grid-cols-2 gap-4'>
                 {
                     shipmentDetails.map((e) => {
@@ -16,8 +20,8 @@ function ShipmentDetails() {
                                     <TruckIcon className='text-indigo-500' strokeWidth={1} />
                                 </div>
                                 <p className="text-sm font-semibold">{e.title}</p>
-                                <p className='text-3xl font-bold'>{e.Units}</p>
-                                <div className='flex gap-2 items-center text-sm'> <ArrowUpRightIcon className=' text-emerald-400' size={15} /> {e.growth} % <span className='text-gray-400'>+7k Today</span></div>
+                                <p className='text-3xl font-bold'>{formatWithCommas(e.Units)}</p>
+                                <div className='flex gap-2 items-center text-sm'> <MoveUpRight className='mt-[3px] text-emerald-400' size={15} /> {e.growth} % <span className='text-gray-400'>+{formatCompact(e.todayPacked)} Today</span></div>
                             </div>
                         )
                     })
@@ -60,7 +64,7 @@ function ShipmentDetails() {
                                             </div>
                                         </div>
 
-                                        <div className="ml-4">
+                                        <div>
                                             <Truck size={48} className="text-gray-300" />
                                         </div>
                                     </div>
@@ -68,11 +72,13 @@ function ShipmentDetails() {
                             ))}
                         </div>
                     </div>
+
+                    {/* Google map  */}
                     <div className='col-span-3 overflow-y-auto pr-2 h-full'>
                         <p className="font-semibold"> On The Way </p>
-                        <BlackAndWhiteMap />
+                        <GrayScaleMap />
                         <div className="grid grid-cols-5 divide-x-1 divide divide-gray-500">
-                            {OnTheWayProductData.map((product) => (
+                            {onTheWayProductData.map((product) => (
                                 <div key={product.title} className="p-2">
                                     <p className="text-xs text-gray-500">{product.title}</p>
                                     <p className="text-sm font-semibold">{product.value}</p>
